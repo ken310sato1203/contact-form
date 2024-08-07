@@ -26,5 +26,5 @@ $ docker-compose exec php bash
 < - - - 作成したER図の画像 - - - >
 
 ## URL
-開発環境：http://localhost/
-MySQL管理画面：http://localhost:8080/
+- 開発環境：http://localhost/
+- MySQL管理画面：http://localhost:8080/
