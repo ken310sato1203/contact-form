@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Egulias\EmailValidator\Validation\SpoofCheckValidation;
+use App\Rules\AlphaRule;
 
 class ContactRequest extends FormRequest
 {
@@ -32,8 +32,6 @@ class ContactRequest extends FormRequest
             'tel2' => ['required', 'regex:/^[0-9]+$/', 'max:5'],
             'tel3' => ['required', 'regex:/^[0-9]+$/', 'max:5'],
             'email' => ['required', 'email:filter', 'max:255'],
-            // 'email' => ['required', 'regex:/^[!-~]+$/', 'email'],
-            // 'tel' => ['required', 'numeric', 'digits_between:10,11'],
             'address' => ['required', 'max:255'],
             'category_id' => ['required', 'max:255'],
             'detail' => ['required', 'max:120'],

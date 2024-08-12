@@ -1,0 +1,131 @@
+.contact-form__content {
+  margin: 0 auto;
+  /* padding: 40px 0px 70px 0px; */
+  max-width: 972px;
+}
+
+.contact-form__heading {
+  margin: 30px 0px 40px 0px;
+  text-align: center;
+}
+
+.form {
+  margin: 0 auto;
+  text-align: left;
+  width: 100%;
+}
+
+.form__group {
+  margin: 0px 20px 15px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__group-title {
+  width: 30%;
+  min-width: 100px;
+  max-width: 200px;
+}
+
+.form__group-content {
+  width: 70%;
+  min-width: 200px;
+  max-width: 800px;  
+}
+
+
+.form__group-content-name {
+  display:inline-flex;
+}
+
+
+.form__label--required {
+  color: #ff0000;
+}
+
+.form__error {
+  height: 20px;
+  color: #ff0000;
+  text-align: left;
+}
+
+.form__input--text input,
+.form__input--textarea textarea {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.form__input--text input {
+  height: 40px;
+}
+
+.form__input--text-name {
+  margin-right: 15px;
+}
+
+
+.form__input--text-name input {
+  height: 40px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.form__input--text-gender {
+  width: 100%;
+  margin-right: 30px;
+}
+
+.form__input--text-tel input {
+  height: 40px;
+  padding: 10px;
+  width: 20%;
+  max-width: 100px;
+  min-width: 50px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+
+  appearance: none;
+}
+
+
+.form__input--text-gender input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.form__input--textarea textarea {
+  height: 7rem;
+}
+
+.form__input--text-category select {
+  height: 40px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+
+  appearance: none;
+}
+
+.select_wrapper {
+    position: relative;
+}
+
+.select_wrapper::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    border-top: 12px solid #BEB1A6;
+    border-bottom: 0;
+    pointer-events: none;
+}

@@ -1,0 +1,104 @@
+
+.modal__content {
+  margin: 0 auto;
+  padding: 10px 50px;
+  max-width: 805px;
+}
+
+.modal__heading {
+  /* margin-bottom: 40px; */
+  text-align: center;
+}
+
+.form {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.modal-table {
+  /* border: 1px solid #ddd; */
+  margin: 30px 0 30px 0;
+}
+
+.modal-table__inner {
+  width: 100%;
+}
+
+.modal-table__header {
+  padding: 10px;
+  width: 200px;
+  /* border-bottom: 1px solid #ddd; */
+  /* background-color: #eee; */
+  font-weight: bold;
+  text-align: left;
+}
+
+.modal-table__text {
+  padding: 10px;
+  /* border-bottom: 1px solid #ddd; */
+  line-height: 100%;
+  text-align: left;
+}
+
+.modal-table__text input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #fff;
+}
+
+.modal-table__row:last-child .modal-table__header,
+.modal-table__row:last-child .modal-table__text {
+  border-bottom-width: 0;
+}
+
+.form__button {
+  margin: 20px 0 10px 0;
+  text-align: center;
+}
+
+.form__button-submit {
+  padding: 10px;
+  width: 150px;
+  height: 50px;
+  border: none;
+  background: #82756A;
+  color: #fff;
+  cursor: pointer;
+}
+
+.round_btn {
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #8B7969; /* 枠の調整 */
+  border-radius: 50%;  /* 丸みの度合い */
+  background: #fff; /* ボタンの背景色 */
+  position: absolute;
+  cursor: pointer;
+  right:10px;
+}
+
+.round_btn:hover:not(.active) {
+  background-color: #f8ecec;
+  color: #8b7969;
+}
+
+.round_btn::before, .round_btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px; /* 棒の幅（太さ） */
+  height: 22px; /* 棒の高さ */
+  background: #8B7969; /* バツ印の色 */
+}
+
+.round_btn::before {
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.round_btn::after {
+  transform: translate(-50%,-50%) rotate(-45deg);
+}

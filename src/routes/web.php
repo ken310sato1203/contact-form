@@ -19,14 +19,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
 });
 
-// Route::get('/contact', [ContactController::class, 'contact'])->middleware('auth');
-// Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->middleware('auth');
-// Route::post('/contacts', [ContactController::class, 'store'])->middleware('auth');
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [ContactController::class, 'contact']);
     Route::post('/confirm', [ContactController::class, 'confirm']);
     Route::post('/thanks', [ContactController::class, 'store']);
-    Route::get('/admin', [ContactController::class, 'admin']);
-    Route::get('/search', [ContactController::class, 'search']);
+    Route::get('/admin', [ContactController::class, 'search']);
+    Route::delete('/delete', [ContactController::class, 'delete']);
+    Route::get('/download', [ContactController::class, 'download']);
 });

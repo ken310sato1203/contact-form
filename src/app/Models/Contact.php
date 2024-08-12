@@ -30,31 +30,31 @@ class Contact extends Model
     public function scopeKeywordSearch($query, $keyword)
     {
         if (!empty($keyword)) {
-            $query->where('last_name', 'like', '%' . $keyword . '%')
-                ->orWhere('first_name', 'like', '%' . $keyword . '%')
-                ->orWhere('email', 'like', '%' . $keyword . '%');
+            $query->where('contacts.last_name', 'like', '%' . $keyword . '%')
+                ->orWhere('contacts.first_name', 'like', '%' . $keyword . '%')
+                ->orWhere('contacts.email', 'like', '%' . $keyword . '%');
         }
     }
 
     public function scopeCategorySearch($query, $category_id)
     {
         if (!empty($category_id)) {
-            $query->where('category_id', $category_id);
+            $query->where('contacts.category_id', $category_id);
         }
     }
 
     public function scopeGenderSearch($query, $gender)
     {
         if (!empty($gender)) {
-            $query->where('gender', $gender);
+            $query->where('contacts.gender', $gender);
         }
     }
 
     public function scopeDateSearch($query, $date)
     {
         if (!empty($date)) {
-            $query->whereDate('created_at', $date)
-                ->orWhereDate('updated_at', $date);
+            $query->whereDate('contacts.created_at', $date)
+                ->orWhereDate('contacts.updated_at', $date);
         }
     }
 }
