@@ -78,6 +78,7 @@ class ContactController extends Controller
             ->genderSearch($request->gender)
             ->categorySearch($request->category_id)
             ->dateSearch($request->date)
+            ->orderBy('updated_at', 'desc')
             ->paginate(7);
         $categories = Category::all();
         $genders = $this->gender_list;
@@ -131,6 +132,7 @@ class ContactController extends Controller
             ->genderSearch($request->gender)
             ->categorySearch($request->category_id)
             ->dateSearch($request->date)
+            ->orderBy('updated_at', 'desc')
             ->get()->toArray();
 
         $response = new StreamedResponse(function () use ($csvHeader, $csvData) {
