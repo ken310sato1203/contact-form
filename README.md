@@ -22,8 +22,8 @@ $ docker-compose exec php bash
 > php artisan key:generate
 > php artisan migrate
 > php artisan db:seed
+> php artisan test
 
-# Dockerを起動し"contact-form"を実行
 # http://localhost:8080
 # にアクセスし、phpMyadminでDBを確認
 # http://localhost
