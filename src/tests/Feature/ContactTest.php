@@ -7,6 +7,10 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Database\Seeders\DatabaseSeeder;
+use App\Models\Contact;
+use League\Csv\Reader;
+use League\Csv\Statement;
+use League\Csv\ResultSet;
 
 class ContactTest extends TestCase
 {
@@ -48,6 +52,17 @@ class ContactTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertStatus(200);
         $this->assertDatabaseHas('contacts', $contact);
+    }
+
+    public function test_contact_store_back()
+    {
+        $contact = [
+            'back' => 'back'
+        ];
+
+        $response = $this->post('/thanks', $contact);
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect('/');
     }
 
     public function test_contact_confirm()
@@ -144,5 +159,61 @@ class ContactTest extends TestCase
             'detail' => '１１１１１１１１１１２２２２２２２２２２３３３３３３３３３３４４４４４４４４４４５５５５５５５５５５６６６６６６６６６６７７７７７７７７７７８８８８８８８８８８９９９９９９９９９９００００００００００１１１１１１１１１１２２２２２２２２２２x'
         ]);
         $response->assertInvalid(['detail' => 'お問合せ内容は120文字以内で入力してください']);
+    }
+
+    public function test_download()
+    {
+        $contact = Contact::all()->sortBy('id');
+
+        $response = $this->get('/download');
+        $response->assertStatus(200);
+        $response->assertHeader('content-type', 'text/csv; charset=UTF-8');
+        $stream = mb_convert_encoding($response->streamedContent(), 'UTF-8', 'SJIS');
+        $csvReader = Reader::createFromString($stream);
+        $csvReader->setHeaderOffset(0);
+
+        $stmt = new Statement();
+        $func = function (array $recordA, array $recordB) {
+            return $recordA['contacts.id'] <=> $recordB['contacts.id'];
+        };
+        $csvRecords = $stmt->orderBy($func)->process($csvReader);
+
+        $cnt = 0;
+        foreach ($csvRecords as $csvRow) {
+            $this->assertEquals($csvRow['contacts.id'], $contact[$cnt]['id']);
+            $this->assertEquals($csvRow['contacts.last_name'], $contact[$cnt]['last_name']);
+            $this->assertEquals($csvRow['contacts.first_name'], $contact[$cnt]['first_name']);
+
+            if ($contact[$cnt]['gender'] === 1) {
+                $gender = '男性';
+            } else if ($contact[$cnt]['gender'] === 2) {
+                $gender = '女性';
+            } else if ($contact[$cnt]['gender'] === 3) {
+                $gender = 'その他';
+            }
+            $this->assertEquals($csvRow['contacts.gender'], $gender);
+
+            $this->assertEquals($csvRow['contacts.email'], $contact[$cnt]['email']);
+            $this->assertEquals($csvRow['contacts.tel'], $contact[$cnt]['tel']);
+            $this->assertEquals($csvRow['contacts.address'], $contact[$cnt]['address']);
+            $this->assertEquals($csvRow['contacts.building'], $contact[$cnt]['building']);
+
+            if ($contact[$cnt]['category_id'] === 1) {
+                $category = '商品のお届けについて';
+            } else if ($contact[$cnt]['category_id'] === 2) {
+                $category = '商品の交換について';
+            } else if ($contact[$cnt]['category_id'] === 3) {
+                $category = '商品トラブル';
+            } else if ($contact[$cnt]['category_id'] === 4) {
+                $category = 'ショップへのお問い合わせ';
+            } else if ($contact[$cnt]['category_id'] === 5) {
+                $category = 'その他';
+            }
+            $this->assertEquals($csvRow['categories.content'], $category);
+
+            $this->assertEquals($csvRow['contacts.detail'], $contact[$cnt]['detail']);
+
+            $cnt++;
+        }
     }
 }

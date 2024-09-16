@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Database\Seeders\DatabaseSeeder;
+use App\Models\Contact;
 
 class LoginTest extends TestCase
 {

@@ -42,10 +42,8 @@ class ContactRequest extends FormRequest
     {
         return [
             'last_name.required' => '姓を入力してください',
-            'last_name.string' => '姓を文字列で入力してください',
             'last_name.max' => '姓を255文字以下で入力してください',
             'first_name.required' => '名を入力してください',
-            'first_name.string' => '名を文字列で入力してください',
             'first_name.max' => '名を255文字以下で入力してください',
             'gender.required' => '性別を選択してください',
             'tel1.required' => '電話番号を入力してください',
@@ -58,9 +56,10 @@ class ContactRequest extends FormRequest
             'tel2.max' => '電話番号は5桁までの数字で入力してください',
             'tel3.max' => '電話番号は5桁までの数字で入力してください',
             'email.required' => 'メールアドレスを入力してください',
-            'email.regex' => 'メールアドレスを半角英数記号で入力してください',
+            // 'email.regex' => 'メールアドレスを半角英数記号で入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
             'email.max' => 'メールアドレスを255文字以下で入力してください',
+            'address.required' => '住所を入力してください',
             // 'tel.required' => '電話番号を入力してください',
             // 'tel.numeric' => '電話番号を数値で入力してください',
             // 'tel.digits_between' => '電話番号を10桁から11桁の間で入力してください',

@@ -10,6 +10,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && composer self-update
 
+# xdebug install
+RUN pecl install xdebug-3.1.6 && \
+    docker-php-ext-enable xdebug
+
 RUN useradd -m ken_sato
 
 WORKDIR /var/www
